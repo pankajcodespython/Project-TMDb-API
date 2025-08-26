@@ -1,0 +1,32 @@
+Problem statement
+Count the number of males and females in the cast of "Money Heist" using the TMDb API.
+
+Output Format:
+Print the count of male and female space separated.
+male_count female_count
+CODE:
+
+import requests
+## Write your code here
+api_key = "b634f1906f8759b7fc95957509e0daed" 
+api_link = "https://api.themoviedb.org/3" 
+params = {'query':'Money Heist','api_key':api_key} 
+header = {'Accept': 'application/json'} 
+response = requests.get('https://api.themoviedb.org/3/search/tv', headers = header, params = params) 
+data = response.json() 
+result=data.get('results')
+for i in result:
+    if i.get('name')=='Money Heist':
+        id=i.get('id')    
+params1={'id':id,'api_key':api_key}
+response1 = requests.get(api_link + '/tv/' + str(id) + '/credits', headers = header, params = params1) 
+data1 = response1.json() 
+cast=data1.get('cast')
+count_male=0
+count_female=0
+for c in cast:
+    if c.get('gender')==1:
+        count_female+=1
+    if c.get('gender')==2:
+        count_male+=1
+print(count_male,count_female)
