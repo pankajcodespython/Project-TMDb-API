@@ -1,0 +1,17 @@
+Problem statement
+Find the vote count and vote average of the movie "3 Idiots" using the TMDb API
+Output format: Vote Count , Vote Average
+CODE:
+
+import requests
+
+api_key = 'b634f1906f8759b7fc95957509e0daed'
+link='https://api.themoviedb.org/3'
+params={'query':'3 Idiots','api_key':api_key}
+header={'Accept':'application/json'}
+response=requests.get(link+'/search/movie',params=params,headers=header)
+data=response.json()
+results=data['results']
+for i in results:
+    if i['title']=='3 Idiots':
+        print(i['vote_count'],i['vote_average'])
