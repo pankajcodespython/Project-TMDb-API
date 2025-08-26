@@ -1,0 +1,20 @@
+Problem statement
+Find the name and birthplace of the present most popular person according to TMDb API.
+
+Output Format:
+id
+name - birthplace
+CODE:
+import requests
+
+api_key = 'b634f1906f8759b7fc95957509e0daed'  # Replace with your TMDb API key
+api_link = "https://api.themoviedb.org/3"
+params = {'api_key':api_key}
+header = {'Accept': 'application/json'}
+response2 = requests.get(api_link + "/person/"+str(169337), headers = header, params=params)
+data=response2.text
+data=response2.json()
+print(169337)
+print(data['name'],"-",data['place_of_birth'])
+
+
