@@ -1,0 +1,17 @@
+Problem statement
+Using the result obtained in previous question, find out if James McAvoy was uncredited for his role in movie Deadpool 2. Print Yes or No.
+CODE:
+import requests
+## Write your code here
+api_key = 'b634f1906f8759b7fc95957509e0daed'
+
+
+api_link = "https://api.themoviedb.org/3"
+params = {'api_key':api_key,}
+header = {'Accept': 'application/json'}
+response2 = requests.get(api_link + "/person/"+str(5530)+"/movie_credits", headers = header, params=params)
+data=response2.json()
+for result in data['cast']:
+    if result['title']=='Deadpool 2':
+        a=result['character']
+        print('No')
