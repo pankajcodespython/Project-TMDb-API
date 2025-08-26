@@ -1,0 +1,26 @@
+Problem statement
+Fetch the trending TV Shows for the week from the TMDb API and print the taglines of the top 5 shows. If there is no tagline, print 'Empty' instead
+
+Output Format:
+Print the taglines in new line.
+CODE:
+
+import requests 
+api_key = "e226f4a5f5bace766952aa0d17182959" 
+api_link = "https://api.themoviedb.org/3" 
+params = {'api_key':api_key} 
+header = {'Accept': 'application/json'} 
+response = requests.get(api_link + "/trending/tv/week", headers = header, params = params) 
+data = response.json() 
+results = data.get("results") 
+ids=[] 
+for result in results[:5]: 
+    ids.append(result.get("id")) 
+    
+for id in ids: 
+    response2 = requests.get(api_link + "/tv/" + str(id) , headers = header, params = params) 
+    data2 = response2.json() 
+    if (data2.get("tagline")) != "": 
+        print(data2.get("tagline")) 
+    else: 
+        print('Empty')
