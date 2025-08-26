@@ -1,0 +1,26 @@
+Problem statement
+Fetch the names of top 5 similar movies to 'Inception' from the TMDb API.
+
+Note
+While fetching the movie id, use the "original_title" field not the "title". Because the "title" field may contain duplicate values.
+Output Format:
+Print the name of the movies in a new line.
+movie_name_1
+movie_name_2
+and so on
+CODE:
+import requests
+
+api_key = 'b634f1906f8759b7fc95957509e0daed'  # Replace with your TMDb API key
+  # Replace with your TMDb API key
+movie_id = 27205  # 'Inception' movie ID
+
+# Make the API request
+response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}/similar?api_key={api_key}&language=en-US&page=1')
+
+# Parse the JSON response
+data = response.json()
+
+results=data['results']
+for i in results[:5]:
+    print(i['title'])
