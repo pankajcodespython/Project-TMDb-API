@@ -1,0 +1,17 @@
+Problem statement
+Fetch the Instagram and Twitter handle of Indian Actress "Alia Bhatt" from the TMDb API.
+
+Output Format
+Print the Instagram and Twitter IDs space separated.
+instagram_id twitter_id
+CODE:
+import requests
+
+
+api_key = 'b634f1906f8759b7fc95957509e0daed'  # Replace with your TMDb API key
+api_link = "https://api.themoviedb.org/3"
+params = {'api_key':api_key}
+header = {'Accept': 'application/json'}
+response2 = requests.get(api_link + "/person/"+str(1108120)+"/external_ids", headers = header, params=params)
+data=response2.json()
+print(data['instagram_id'],'',data['twitter_id'])
