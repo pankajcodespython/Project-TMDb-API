@@ -1,0 +1,16 @@
+Problem statement
+Fetch the name and air date of S06E05 of the TV Show 'The Big Bang Theory' from TMDb API.
+
+Output Format:
+episode_name - air_date
+CODE:
+import requests
+## Write your code here
+import requests
+api_key = "b0a53d521764ab3bc5732e74a5cc06c9"
+api_link = "https://api.themoviedb.org/3"
+params = {'api_key':api_key,'query':'The Big Bang Theory'}
+header = {'Accept': 'application/json'}
+response2 = requests.get(api_link + "/tv/"+str(1418)+"/season/"+str(6)+"/episode/"+str(5), headers = header, params=params)
+data=response2.json()
+print(data['name'],"-",data['air_date'])
