@@ -1,0 +1,33 @@
+Problem statement
+Fetch the names of the character played by Tom Cruise in the movies:
+
+Top Gun
+Mission: Impossible - Fallout
+Minority Report
+Edge of Tomorrow
+Output Format:
+Print the names of the characters played by Tom Cruise line separated, in the respective order given in question.
+CODE:
+import requests
+
+
+
+api_key = 'b634f1906f8759b7fc95957509e0daed'  # Replace with your TMDb API key
+api_link = "https://api.themoviedb.org/3"
+params = {'api_key':api_key}
+header = {'Accept': 'application/json'}
+response2 = requests.get(api_link + "/person/"+str(500)+"/movie_credits", headers = header, params=params)
+data=response2.json()
+for i in data['cast']:
+    if i['title']=='Top Gun':
+        print(i['character'])
+for i in data['cast']:        
+    if i['title']=='Mission: Impossible - Fallout':
+        print(i['character'])
+for i in data['cast']:        
+    if i['title']=='Minority Report':
+        print(i['character'])
+for i in data['cast']:        
+    if i['title']=='Edge of Tomorrow':
+        print(i['character'])    
+    
