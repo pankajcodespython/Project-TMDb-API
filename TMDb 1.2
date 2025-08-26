@@ -1,0 +1,15 @@
+Problem statement
+Fetch the company id company 'Marvel Studios' using TMDb. Print the id.
+CODE:
+import requests
+
+api_key = 'b634f1906f8759b7fc95957509e0daed'
+link='https://api.themoviedb.org/3'
+params={'query':'Marvel Studios','api_key':api_key}
+header={'Accept':'application/json'}
+response=requests.get(link+'/search/company',params=params,headers=header)
+data=response.json()
+results=data['results']
+for i in results:
+    if i['name']=='Marvel Studios':
+        print(i['id'])
