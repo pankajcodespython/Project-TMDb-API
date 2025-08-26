@@ -1,0 +1,29 @@
+
+Problem statement
+Print the names of all the TV shows to be aired today whose original language is english.
+
+Output Format:
+Print the name of each TV show in a new line.
+CODE:
+
+import requests
+import requests as rq
+page_num = 1
+api_key = 'e226f4a5f5bace766952aa0d17182959'
+api_link = 'https://api.themoviedb.org/3'
+header = {'Accept':'application/json'}
+params = {'language':'en','api_key':api_key}
+r = rq.get(api_link+'/tv/airing_today',headers = header,params = params)
+data = r.json()
+# print(data)
+res = data['results']
+page_num = data.get('total_pages')
+# print(page_num)
+for i in range(1,page_num + 1):
+    params = {'language':"en",'api_key':api_key,'page':i}
+    r = rq.get(api_link+'/tv/airing_today',headers = header,params = params)
+    data = r.json()
+    results = data.get('results')
+    for r in results:
+        if r['original_language'] == 'en':
+            print(r['name'])
